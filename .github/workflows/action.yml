@@ -1,4 +1,4 @@
-name: SFDX update from repository
+name: SFDX update 
 
 on: [push]
 
