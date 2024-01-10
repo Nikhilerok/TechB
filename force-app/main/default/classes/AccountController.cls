@@ -69,6 +69,15 @@ public static Account createAccountss(Account acc) {
 
  */
 
+ @AuraEnabled(cacheable=true)
+  public static List<Account> getAccounts(){
+      try {
+          return [SELECT Id,Name,Type,Phone,Industry,Website FROM Account LIMIT 20];
+      } catch (Exception e) {
+          throw new AuraHandledException(e.getMessage());
+      }
+  }
+
 @AuraEnabled(cacheable=true)
 public static List<Account> retrieveMatchingAccounts(String searchTerm) {
     return [SELECT Id, Name, Industry, Phone FROM Account WHERE Name LIKE :('%' + searchTerm + '%') LIMIT 10];
