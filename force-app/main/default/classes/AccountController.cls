@@ -135,4 +135,14 @@ public static List<Account> createOrUpdateAccount(List<Account> accList) {
     upsert updatedAccounts;
     return updatedAccounts; 
 }
+
+
+
+
+@AuraEnabled(cacheable=true)
+  public static List<Contact> getContactsByAccountId(Id accountId) {
+      return [SELECT Id, Name, Email FROM Contact WHERE AccountId = :accountId];
+  }
+
+  
 }
